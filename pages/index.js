@@ -48,6 +48,13 @@ export default function Home() {
         <meta property="fc:frame:button:1:action" content="link" />
         <meta property="fc:frame:button:1:target" content="#" />
         {/* Add more meta tags as needed */}
+        {showInputFrame && (
+          <>
+            <meta property="fc:frame:input:text" content="Enter FID" />
+            <meta property="fc:frame:button:2" content="Submit" />
+            <meta property="fc:frame:button:2:action" content="post" />
+          </>
+        )}
       </Head>
       <h2>Make @compusophy Follow</h2>
       {!showInputFrame && (
