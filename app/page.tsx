@@ -1,21 +1,31 @@
 export default function Home() {
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  // This component is client-side, so it handles the form submission directly.
+  
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const inputText = formData.get('inputName'); // Ensure your input field's name attribute is "inputName"
+    const inputText = formData.get('inputName'); // Make sure your input field has the name="inputName"
 
-    // Call your API route
-    const response = await fetch('/api/followUser', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ target_fid: inputText }),
-    });
+    // Here, we call the API route
+    try {
+      const response = await fetch('/api/followUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ target_fid: inputText }),
+      });
 
-    const result = await response.json();
-    console.log(result);
-  };
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error('There was an error!', error);
+    }
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
