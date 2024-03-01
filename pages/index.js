@@ -9,7 +9,7 @@ export default function Home() {
         <meta property="fc:frame:image" content="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png" />
         <meta property="fc:frame:button:1" content="Show Input" />
         <meta property="fc:frame:button:1:action" content="link" />
-        <meta property="fc:frame:button:1:target" content="URL_TO_DYNAMIC_FRAME" />
+        <meta property="fc:frame:button:1:target" content="/DynamicFrame" />
         {/* Add more meta tags as needed */}
       </Head>
       <h2>Make @compusophy Follow</h2>
