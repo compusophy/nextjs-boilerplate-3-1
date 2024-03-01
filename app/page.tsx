@@ -1,5 +1,5 @@
 export default function Home() {
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const inputText = formData.get('inputName'); // Ensure your input field's name attribute is "inputName"
