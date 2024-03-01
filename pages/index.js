@@ -1,21 +1,36 @@
+import Head from 'next/head';
 import { useState } from 'react';
-import Head from 'next/head'; // Import Head component from Next.js
 
 export default function Home() {
   const [fid, setFid] = useState('');
 
   const handleSubmit = async () => {
-    // Construct the API call URL with the fid
-    const apiUrl = `/api/follow?fid=${fid}`;
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ fid }),
-    });
-    const data = await response.json();
-    console.log(data);
+    try {
+      // Make the API call to Neynar API endpoint with fid included in the URL
+      const apiUrl = `https://api.neynar.com/v2/farcaster/user/follow?fid=${fid}`;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'api_key': process.env.NEYNAR_API_KEY,
+        },
+        body: JSON.stringify({
+          signer_uuid: process.env.SIGNER_UUID,
+          target_fids: [parseInt(fid)],
+        }),
+      });
+
+      // Handle response
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+      } else {
+        console.error('Failed to follow fid:', response.status);
+      }
+    } catch (error) {
+      console.error('Error while following fid:', error.message);
+    }
   };
 
   return (
@@ -26,7 +41,6 @@ export default function Home() {
         <meta property="fc:frame:image" content="URL_TO_YOUR_IMAGE" />
         <meta property="fc:frame:button:1" content="Submit" />
         <meta property="fc:frame:button:1:action" content="post" />
-        {/* Note: Omitting the fc:frame:button:1:target meta tag */}
         <meta property="fc:frame:input:text" content="Enter FID" />
         {/* Add more meta tags as needed */}
       </Head>
