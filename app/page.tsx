@@ -1,19 +1,19 @@
 import React from 'react';
 
 export default function Home() {
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const inputValue = formData.get('inputName'); // Assuming your input has a name attribute "inputName"
-    console.log(inputValue); // Process your input value as needed
+    const formData = new FormData(event.currentTarget);
+    const inputValue = formData.get('inputName'); // Make sure your input has a name attribute "inputName"
+    console.log(inputValue);
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
-          type="text"
           name="inputName"
+          type="text"
           placeholder="Enter something..."
           className="border-2 border-gray-300 p-2"
         />
