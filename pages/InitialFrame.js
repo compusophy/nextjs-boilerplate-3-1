@@ -6,7 +6,7 @@ export default function Home() {
       <Head>
         {/* Meta tags for Farcaster initial frame */}
         <meta property="fc:frame" content="vNext" />
-        <meta property="fc:frame:image" content="URL_TO_YOUR_IMAGE" />
+        <meta property="fc:frame:image" content="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png" />
         <meta property="fc:frame:button:1" content="Show Input" />
         <meta property="fc:frame:button:1:action" content="link" />
         <meta property="fc:frame:button:1:target" content="URL_TO_DYNAMIC_FRAME" />
