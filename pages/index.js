@@ -25,6 +25,7 @@ export default function Home() {
         <meta property="fc:frame:button:1" content="Submit" />
         <meta property="fc:frame:button:1:action" content="post" />
         <meta property="fc:frame:post_url" content="/api/follow" />
+        <meta property="fc:frame:input:text" content="Enter FID" /> {/* Add input field meta tag */}
         {/* Add more meta tags as needed */}
       </Head>
       <h2>Make @compusophy Follow</h2>
