@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [fid, setFid] = useState('');
+  const [showInputFrame, setShowInputFrame] = useState(false);
 
   const handleSubmit = async () => {
     try {
@@ -33,25 +34,36 @@ export default function Home() {
     }
   };
 
+  const handleShowInputFrame = () => {
+    setShowInputFrame(true);
+  };
+
   return (
     <div>
       <Head>
         {/* Meta tags for Farcaster frame */}
         <meta property="fc:frame" content="vNext" />
         <meta property="fc:frame:image" content="URL_TO_YOUR_IMAGE" />
-        <meta property="fc:frame:button:1" content="Submit" />
-        <meta property="fc:frame:button:1:action" content="post" />
-        <meta property="fc:frame:input:text" content="Enter FID" />
+        <meta property="fc:frame:button:1" content="Show Input" />
+        <meta property="fc:frame:button:1:action" content="link" />
+        <meta property="fc:frame:button:1:target" content="#" />
         {/* Add more meta tags as needed */}
       </Head>
       <h2>Make @compusophy Follow</h2>
-      <input
-        type="text"
-        value={fid}
-        onChange={(e) => setFid(e.target.value)}
-        placeholder="Enter FID"
-      />
-      <button onClick={handleSubmit}>Submit</button>
+      {!showInputFrame && (
+        <button onClick={handleShowInputFrame}>Show Input</button>
+      )}
+      {showInputFrame && (
+        <>
+          <input
+            type="text"
+            value={fid}
+            onChange={(e) => setFid(e.target.value)}
+            placeholder="Enter FID"
+          />
+          <button onClick={handleSubmit}>Submit</button>
+        </>
+      )}
     </div>
   );
 }
